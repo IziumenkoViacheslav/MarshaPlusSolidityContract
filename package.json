@@ -4,7 +4,8 @@
   "description": "solidity contract of Marsh +",
   "main": "index.js",
   "scripts": {
-    "test": "npx hardhat test"
+    "test": "npx hardhat test",
+    "coverage": "npx hardhat coverage"
   },
   "keywords": [],
   "author": "",
