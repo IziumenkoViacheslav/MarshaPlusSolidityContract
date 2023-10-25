@@ -3,8 +3,6 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-// import '@openzeppelin/contracts/access/Ownable.sol';
-
 contract MarshaToken is ERC20 {
     // 8 billion tokens in wei
     uint256 public constant INITIAL_SUPPLY = 8_000_000_000 * 10 ** 18;
