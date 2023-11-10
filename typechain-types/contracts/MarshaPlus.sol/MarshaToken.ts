@@ -34,6 +34,7 @@ export interface MarshaTokenInterface extends utils.Interface {
     "allowance(address,address)": FunctionFragment;
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
+    "burnIfNeeded()": FunctionFragment;
     "charity()": FunctionFragment;
     "community()": FunctionFragment;
     "decimals()": FunctionFragment;
@@ -41,6 +42,7 @@ export interface MarshaTokenInterface extends utils.Interface {
     "development()": FunctionFragment;
     "expansion()": FunctionFragment;
     "foundation()": FunctionFragment;
+    "halfCommunityInitialTokens()": FunctionFragment;
     "increaseAllowance(address,uint256)": FunctionFragment;
     "investors()": FunctionFragment;
     "lastBurnTimestamp()": FunctionFragment;
@@ -48,6 +50,7 @@ export interface MarshaTokenInterface extends utils.Interface {
     "marketing()": FunctionFragment;
     "name()": FunctionFragment;
     "symbol()": FunctionFragment;
+    "teamRewardAfter3Years()": FunctionFragment;
     "timeOfContractCreation()": FunctionFragment;
     "totalSupply()": FunctionFragment;
     "transfer(address,uint256)": FunctionFragment;
@@ -61,6 +64,7 @@ export interface MarshaTokenInterface extends utils.Interface {
       | "allowance"
       | "approve"
       | "balanceOf"
+      | "burnIfNeeded"
       | "charity"
       | "community"
       | "decimals"
@@ -68,6 +72,7 @@ export interface MarshaTokenInterface extends utils.Interface {
       | "development"
       | "expansion"
       | "foundation"
+      | "halfCommunityInitialTokens"
       | "increaseAllowance"
       | "investors"
       | "lastBurnTimestamp"
@@ -75,6 +80,7 @@ export interface MarshaTokenInterface extends utils.Interface {
       | "marketing"
       | "name"
       | "symbol"
+      | "teamRewardAfter3Years"
       | "timeOfContractCreation"
       | "totalSupply"
       | "transfer"
@@ -101,6 +107,10 @@ export interface MarshaTokenInterface extends utils.Interface {
     functionFragment: "balanceOf",
     values: [PromiseOrValue<string>]
   ): string;
+  encodeFunctionData(
+    functionFragment: "burnIfNeeded",
+    values?: undefined
+  ): string;
   encodeFunctionData(functionFragment: "charity", values?: undefined): string;
   encodeFunctionData(functionFragment: "community", values?: undefined): string;
   encodeFunctionData(functionFragment: "decimals", values?: undefined): string;
@@ -118,6 +128,10 @@ export interface MarshaTokenInterface extends utils.Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
+    functionFragment: "halfCommunityInitialTokens",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "increaseAllowance",
     values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
   ): string;
@@ -130,6 +144,10 @@ export interface MarshaTokenInterface extends utils.Interface {
   encodeFunctionData(functionFragment: "marketing", values?: undefined): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(functionFragment: "symbol", values?: undefined): string;
+  encodeFunctionData(
+    functionFragment: "teamRewardAfter3Years",
+    values?: undefined
+  ): string;
   encodeFunctionData(
     functionFragment: "timeOfContractCreation",
     values?: undefined
@@ -162,6 +180,10 @@ export interface MarshaTokenInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "allowance", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "burnIfNeeded",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(functionFragment: "charity", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "community", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "decimals", data: BytesLike): Result;
@@ -176,6 +198,10 @@ export interface MarshaTokenInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "expansion", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "foundation", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "halfCommunityInitialTokens",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "increaseAllowance",
     data: BytesLike
   ): Result;
@@ -188,6 +214,10 @@ export interface MarshaTokenInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "marketing", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "symbol", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "teamRewardAfter3Years",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "timeOfContractCreation",
     data: BytesLike
@@ -283,6 +313,10 @@ export interface MarshaToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
 
+    burnIfNeeded(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     charity(overrides?: CallOverrides): Promise<[string]>;
 
     community(overrides?: CallOverrides): Promise<[string]>;
@@ -300,6 +334,8 @@ export interface MarshaToken extends BaseContract {
     expansion(overrides?: CallOverrides): Promise<[string]>;
 
     foundation(overrides?: CallOverrides): Promise<[string]>;
+
+    halfCommunityInitialTokens(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     increaseAllowance(
       spender: PromiseOrValue<string>,
@@ -319,19 +355,23 @@ export interface MarshaToken extends BaseContract {
 
     symbol(overrides?: CallOverrides): Promise<[string]>;
 
+    teamRewardAfter3Years(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     timeOfContractCreation(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     totalSupply(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     transfer(
-      recipient: PromiseOrValue<string>,
+      to: PromiseOrValue<string>,
       amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
     transferFrom(
-      sender: PromiseOrValue<string>,
-      recipient: PromiseOrValue<string>,
+      from: PromiseOrValue<string>,
+      to: PromiseOrValue<string>,
       amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
@@ -358,6 +398,10 @@ export interface MarshaToken extends BaseContract {
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
+  burnIfNeeded(
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   charity(overrides?: CallOverrides): Promise<string>;
 
   community(overrides?: CallOverrides): Promise<string>;
@@ -375,6 +419,8 @@ export interface MarshaToken extends BaseContract {
   expansion(overrides?: CallOverrides): Promise<string>;
 
   foundation(overrides?: CallOverrides): Promise<string>;
+
+  halfCommunityInitialTokens(overrides?: CallOverrides): Promise<BigNumber>;
 
   increaseAllowance(
     spender: PromiseOrValue<string>,
@@ -394,19 +440,23 @@ export interface MarshaToken extends BaseContract {
 
   symbol(overrides?: CallOverrides): Promise<string>;
 
+  teamRewardAfter3Years(
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   timeOfContractCreation(overrides?: CallOverrides): Promise<BigNumber>;
 
   totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
   transfer(
-    recipient: PromiseOrValue<string>,
+    to: PromiseOrValue<string>,
     amount: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
   transferFrom(
-    sender: PromiseOrValue<string>,
-    recipient: PromiseOrValue<string>,
+    from: PromiseOrValue<string>,
+    to: PromiseOrValue<string>,
     amount: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
@@ -433,6 +483,8 @@ export interface MarshaToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    burnIfNeeded(overrides?: CallOverrides): Promise<void>;
+
     charity(overrides?: CallOverrides): Promise<string>;
 
     community(overrides?: CallOverrides): Promise<string>;
@@ -450,6 +502,8 @@ export interface MarshaToken extends BaseContract {
     expansion(overrides?: CallOverrides): Promise<string>;
 
     foundation(overrides?: CallOverrides): Promise<string>;
+
+    halfCommunityInitialTokens(overrides?: CallOverrides): Promise<BigNumber>;
 
     increaseAllowance(
       spender: PromiseOrValue<string>,
@@ -469,19 +523,21 @@ export interface MarshaToken extends BaseContract {
 
     symbol(overrides?: CallOverrides): Promise<string>;
 
+    teamRewardAfter3Years(overrides?: CallOverrides): Promise<void>;
+
     timeOfContractCreation(overrides?: CallOverrides): Promise<BigNumber>;
 
     totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
     transfer(
-      recipient: PromiseOrValue<string>,
+      to: PromiseOrValue<string>,
       amount: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<boolean>;
 
     transferFrom(
-      sender: PromiseOrValue<string>,
-      recipient: PromiseOrValue<string>,
+      from: PromiseOrValue<string>,
+      to: PromiseOrValue<string>,
       amount: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<boolean>;
@@ -533,6 +589,10 @@ export interface MarshaToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
+    burnIfNeeded(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     charity(overrides?: CallOverrides): Promise<BigNumber>;
 
     community(overrides?: CallOverrides): Promise<BigNumber>;
@@ -550,6 +610,8 @@ export interface MarshaToken extends BaseContract {
     expansion(overrides?: CallOverrides): Promise<BigNumber>;
 
     foundation(overrides?: CallOverrides): Promise<BigNumber>;
+
+    halfCommunityInitialTokens(overrides?: CallOverrides): Promise<BigNumber>;
 
     increaseAllowance(
       spender: PromiseOrValue<string>,
@@ -569,19 +631,23 @@ export interface MarshaToken extends BaseContract {
 
     symbol(overrides?: CallOverrides): Promise<BigNumber>;
 
+    teamRewardAfter3Years(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     timeOfContractCreation(overrides?: CallOverrides): Promise<BigNumber>;
 
     totalSupply(overrides?: CallOverrides): Promise<BigNumber>;
 
     transfer(
-      recipient: PromiseOrValue<string>,
+      to: PromiseOrValue<string>,
       amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     transferFrom(
-      sender: PromiseOrValue<string>,
-      recipient: PromiseOrValue<string>,
+      from: PromiseOrValue<string>,
+      to: PromiseOrValue<string>,
       amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
@@ -609,6 +675,10 @@ export interface MarshaToken extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
+    burnIfNeeded(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
     charity(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     community(overrides?: CallOverrides): Promise<PopulatedTransaction>;
@@ -626,6 +696,10 @@ export interface MarshaToken extends BaseContract {
     expansion(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     foundation(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    halfCommunityInitialTokens(
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
 
     increaseAllowance(
       spender: PromiseOrValue<string>,
@@ -645,6 +719,10 @@ export interface MarshaToken extends BaseContract {
 
     symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
+    teamRewardAfter3Years(
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
     timeOfContractCreation(
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
@@ -652,14 +730,14 @@ export interface MarshaToken extends BaseContract {
     totalSupply(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     transfer(
-      recipient: PromiseOrValue<string>,
+      to: PromiseOrValue<string>,
       amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     transferFrom(
-      sender: PromiseOrValue<string>,
-      recipient: PromiseOrValue<string>,
+      from: PromiseOrValue<string>,
+      to: PromiseOrValue<string>,
       amount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;

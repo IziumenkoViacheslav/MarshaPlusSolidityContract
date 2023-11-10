@@ -4,7 +4,7 @@ import '@nomicfoundation/hardhat-toolbox'
 // import { mnemonic } from './secret.json'
 
 const config: HardhatUserConfig = {
-  solidity: '0.8.18',
+  solidity: '0.8.22',
   defaultNetwork: 'hardhat',
   networks: {
     local: {
