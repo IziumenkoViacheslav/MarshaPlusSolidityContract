@@ -62,52 +62,55 @@ contract MarshaToken is ERC20 {
         lastBurnTimestamp = block.timestamp;
         timeOfContractCreation = block.timestamp;
 
+        /**
+         * @notice Mint 8billions tokens tokens are free.
+         */
         _mint(address(this), INITIAL_SUPPLY);
 
         /**
-         * Community 35% all tokens are free.
+         * @notice Community 35% all tokens are free.
          */
         _transfer(address(this), community, ((INITIAL_SUPPLY * 35) / 100));
         halfCommunityInitialTokens = balanceOf(community) / 2;
 
         /**
-         * Charity: 25% (20% locked, 5% free).
+         * @notice Charity: 25% (20% locked, 5% free).
          */
         _transfer(address(this), charity, ((INITIAL_SUPPLY * 5) / 100));
 
         /**
-         * Foundation: 10% (5% locked, 5% free).
+         * @notice Foundation: 10% (5% locked, 5% free).
          */
         _transfer(address(this), foundation, ((INITIAL_SUPPLY * 5) / 100));
 
         /**
-         * Development: 10% (5% free, 5% locked).
+         * @notice Development: 10% (5% free, 5% locked).
          */
         _transfer(address(this), development, ((INITIAL_SUPPLY * 5) / 100));
 
         /**
-         * Marketing: 8% (5% free, 3% locked).
+         * @notice Marketing: 8% (5% free, 3% locked).
          */
         _transfer(address(this), marketing, ((INITIAL_SUPPLY * 5) / 100));
 
         /**
-         * Investors: 5% (free).
+         * @notice Investors: 5% (free).
          */
         _transfer(address(this), investors, ((INITIAL_SUPPLY * 5) / 100));
 
         /**
-         * Legal: 5% (2.5% free, 2.5% locked).
+         * @notice Legal: 5% (2.5% free, 2.5% locked).
          */
         _transfer(address(this), legal, ((INITIAL_SUPPLY * 25) / 1000));
 
         /**
-         * Expansion: 2% (1% free, 1% locked).
+         * @notice Expansion: 2% (1% free, 1% locked).
          */
         _transfer(address(this), expansion, ((INITIAL_SUPPLY * 1) / 100));
     }
 
     /**
-     * reward tokens for departments after 1095 days of lounch contract.
+     * @notice Reward tokens for departments after 1095 days of lounch contract.
      */
     function teamRewardAfter3Years() external {
         if (block.timestamp >= timeOfContractCreation + 1095 days) {
@@ -126,8 +129,7 @@ contract MarshaToken is ERC20 {
     }
 
     /**
-     * Function to burn a percentage of total supply annually if needed.
-     * Stop burning if burned more than half of cummunity initial balamce
+     * @notice Burn a percentage of total supply annually if needed. Stop burning if burned more than half of cummunity initial balamce
      */
     function burnIfNeeded() external {
         if (
