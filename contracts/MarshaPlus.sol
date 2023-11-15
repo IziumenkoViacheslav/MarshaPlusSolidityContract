@@ -62,50 +62,32 @@ contract MarshaToken is ERC20 {
         lastBurnTimestamp = block.timestamp;
         timeOfContractCreation = block.timestamp;
 
-        /**
-         * @notice Mint 8billions tokens tokens are free.
-         */
+        // Mint 8billions tokens tokens are free.
         _mint(address(this), INITIAL_SUPPLY);
 
-        /**
-         * @notice Community 35% all tokens are free.
-         */
+        // Community 35% all tokens are free.
         _transfer(address(this), community, ((INITIAL_SUPPLY * 35) / 100));
         halfCommunityInitialTokens = balanceOf(community) / 2;
 
-        /**
-         * @notice Charity: 25% (20% locked, 5% free).
-         */
+        // Charity: 25% (20% locked, 5% free).
         _transfer(address(this), charity, ((INITIAL_SUPPLY * 5) / 100));
 
-        /**
-         * @notice Foundation: 10% (5% locked, 5% free).
-         */
+        // Foundation: 10% (5% locked, 5% free).
         _transfer(address(this), foundation, ((INITIAL_SUPPLY * 5) / 100));
 
-        /**
-         * @notice Development: 10% (5% free, 5% locked).
-         */
+        // Development: 10% (5% free, 5% locked).
         _transfer(address(this), development, ((INITIAL_SUPPLY * 5) / 100));
 
-        /**
-         * @notice Marketing: 8% (5% free, 3% locked).
-         */
+        // Marketing: 8% (5% free, 3% locked).
         _transfer(address(this), marketing, ((INITIAL_SUPPLY * 5) / 100));
 
-        /**
-         * @notice Investors: 5% (free).
-         */
+        // Investors: 5% (free).
         _transfer(address(this), investors, ((INITIAL_SUPPLY * 5) / 100));
 
-        /**
-         * @notice Legal: 5% (2.5% free, 2.5% locked).
-         */
+        // Legal: 5% (2.5% free, 2.5% locked).
         _transfer(address(this), legal, ((INITIAL_SUPPLY * 25) / 1000));
 
-        /**
-         * @notice Expansion: 2% (1% free, 1% locked).
-         */
+        // Expansion: 2% (1% free, 1% locked).
         _transfer(address(this), expansion, ((INITIAL_SUPPLY * 1) / 100));
     }
 
