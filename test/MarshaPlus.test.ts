@@ -17,8 +17,6 @@ describe('Token contract', function () {
   beforeEach(async () => {
     [community, charity, foundation, development, marketing, investors, legal, expansion] =
       await ethers.getSigners()
-    console.log(await community.getAddress())
-
     const ContractFactory = await ethers.getContractFactory('MarshaToken')
     tokenInstance = await ContractFactory.deploy(
       await community.getAddress(),
@@ -30,6 +28,24 @@ describe('Token contract', function () {
       await legal.getAddress(),
       await expansion.getAddress()
     )
+  })
+  it("should deploy with valid addresses", async function () {
+    expect(tokenInstance.address).to.not.be.undefined;
+  });
+  it("should revert if any address is invalid", async function () {
+    const ContractFactory = await ethers.getContractFactory('MarshaToken')
+    await expect(
+      ContractFactory.deploy(
+        '0x0000000000000000000000000000000000000000',
+        await charity.getAddress(),
+        await foundation.getAddress(),
+        await development.getAddress(),
+        await marketing.getAddress(),
+        await investors.getAddress(),
+        await legal.getAddress(),
+        await expansion.getAddress()
+        )
+    ).to.be.revertedWith("Invalid address")
   })
   it('should deploy the contract with the correct initial state', async () => {
     const totalSupply = await tokenInstance.totalSupply()

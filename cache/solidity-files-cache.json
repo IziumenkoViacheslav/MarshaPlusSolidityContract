@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/home/slavic/WORK/MarshaPlusSolidityContract/contracts/MarshaPlus.sol": {
-      "lastModificationDate": 1699651699565,
-      "contentHash": "1ec68327fcde667897522f0273cf7609",
+      "lastModificationDate": 1700056827450,
+      "contentHash": "d6dc91c8bbf09812f94245f715723a91",
       "sourceName": "contracts/MarshaPlus.sol",
       "solcConfig": {
         "version": "0.8.22",
